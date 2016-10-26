@@ -172,7 +172,7 @@ header .right-panel {
 .content {
     width: calc(100% - 275px);
     display: block;
-    position: absolute;
+    position: relative;
     height: 100%;
     left: 275px;
     min-width: 1005px;
@@ -581,6 +581,9 @@ input:checked + .slider:before {
     outline:none;
   	box-shadow: 0 0 10px #00aeef;
 	border: 1px solid #00aeef;
+}
+.login-block input::selection {
+    background: #00aeef;
 }
 .login-block input[type="submit"]{
 	border: 3px solid #00aeef;

@@ -16,7 +16,7 @@ export default class Content extends Component {
 				<div className="right-content-panel">
 					<ControlPanel />
 				</div>
-				<InfoTable />
+				<InfoTable site={this.props.site} />
 			</div>
 		);
 	}
