@@ -1,73 +1,40 @@
 import React, { Component } from 'react'
 
+import LightControlling from './controlling/LightControlling'
+import SensorControlling from './controlling/SensorControlling'
+
 
 export default class ControlPanel extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			light: null,
+			sensor: null,
+			controlling: null
+		}
+	}
+	componentWillReceiveProps(nextProps) {
+		console.log("nextProps:", nextProps)
+		this.setState({
+			light: nextProps.light,
+			sensor: nextProps.sensor,
+			controlling: nextProps.controlling
+		})
+	}
 	render() {
+		var light = this.state.light;
+		var sensor = this.state.sensor;
+		var controlling = this.state.controlling;
+		var panel = null;
+		if (controlling && controlling == "light") {
+			panel = <LightControlling light={this.state.light}/>
+		}
+		if (controlling && controlling == "sensor") {
+			panel = <SensorControlling sensor={this.state.sensor}/>
+		}
 		return (
 	    	<div className="last-saved">
-	    		<h2>Controlling: Light 1</h2>
-	    		<div className="controlling">
-	    			<div className="left-column">
-	    				<h2>Light status</h2>
-		    			<ul>
-		    				<li>
-		    					<span className="title">LED:</span><span className="value">%</span>
-		    				</li>
-		    				<li>
-		    					<span className="title">Ambient light:</span><span className="value">on</span>
-		    				</li>
-		    				<li>
-		    					<span className="title">Tampering:</span><span className="value">on</span>
-		    				</li>
-		    				<li>
-		    					<span className="title">Temperature:</span><span className="value">on</span>
-		    				</li>
-		    				<li>
-		    					<span className="title">Digital input:</span><span className="value">on</span>
-		    				</li>
-		    			</ul>
-	    			</div>
-	    			<div className="right-column">
-	    				<h2>Manual control</h2>
-	    				<ul>
-	    					<li>
-	    						<span className="title">LED</span>
-								<label className="switch">
-									  <input type="checkbox" />
-									  <div className="slider round"></div>
-								</label>
-	    					</li>
-	    					<li>
-	    						<span className="title">Energy save</span>
-								<label className="switch">
-									  <input type="checkbox" />
-									  <div className="slider round"></div>
-								</label>
-	    					</li>
-	    					<li>
-	    						<span className="title">Boost</span>
-								<label className="switch">
-									  <input type="checkbox" />
-									  <div className="slider round"></div>
-								</label>
-	    					</li>
-	    					<li>
-	    						<span className="title">Strobe</span>
-								<label className="switch">
-									  <input type="checkbox" />
-									  <div className="slider round"></div>
-								</label>
-	    					</li>
-	    					<li>
-	    						<span className="title">Digital output</span>
-								<label className="switch">
-									  <input type="checkbox" />
-									  <div className="slider round"></div>
-								</label>
-	    					</li>
-	    				</ul>
-	    			</div>
-    			</div>
+	    		{panel}
 	    	</div>
 		);
 	}

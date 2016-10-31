@@ -15,6 +15,7 @@ export default class FilterPanel extends Component {
 			selectedAlarmZone: null,
 			selectedCamera: null,
 			selectedSensor: null,
+			menu_active: null,
 			lights: [],
 			alarm_zones: [],
 			cameras: [],
@@ -38,21 +39,23 @@ export default class FilterPanel extends Component {
 
 		fetch(request)
 			  .then(function(response) {
-			  	console.log('then1:', response)
 			    return response.json();
 			   })
 			  .then(function(objects) {
-			  		console.log('then2:', objects)
+			  		console.log('lights:', objects)
 			  		if (objects.hasOwnProperty('detail')) {
 				  		self.setState({
 				  			lights: [],
 				  			selectedLight: null
 				  		})
+			  		} else {
+				  		self.setState({
+				  			lights: objects,
+				  			selectedLight: objects[0],
+				  			menu_active: 1
+				  		})
+			  			self.props.getLight(objects[0]);
 			  		}
-			  		self.setState({
-			  			lights: objects,
-			  			selectedLight: objects[0]
-			  		})
 			  	});
 	}
 	get_alarm_zones(site) {
@@ -78,11 +81,14 @@ export default class FilterPanel extends Component {
 				  			alarm_zones: [],
 				  			selectedAlarmZone: null
 				  		})
+			  		} else {
+				  		self.setState({
+			  				alarm_zones: objects,
+				  			selectedAlarmZone: objects[0],
+				  			menu_active: 2
+				  		})
 			  		}
-			  		self.setState({
-			  			alarm_zones: objects,
-			  			selectedAlarmZone: objects[0]
-			  		})
+
 			  	});
 	}
 	get_cameras(site) {
@@ -108,11 +114,13 @@ export default class FilterPanel extends Component {
 				  			cameras: [],
 				  			selectedCamera: null
 				  		})
+			  		} else {
+				  		self.setState({
+				  			cameras: objects,
+				  			selectedCamera: objects[0],
+				  			menu_active: 3
+				  		})
 			  		}
-			  		self.setState({
-			  			cameras: objects,
-			  			selectedCamera: objects[0]
-			  		})
 			  	});
 	}
 	get_sensors(site) {
@@ -138,11 +146,14 @@ export default class FilterPanel extends Component {
 				  			sensors: [],
 				  			selectedSensor: null
 				  		})
+			  		} else {
+				  		self.setState({
+				  			sensors: objects,
+				  			selectedSensor: objects[0],
+				  			menu_active: 4
+				  		})
+				  		self.props.getSensor(objects[0]);
 			  		}
-			  		self.setState({
-			  			sensors: objects,
-			  			selectedSensor: objects[0]
-			  		})
 			  	});
 	}
 	componentWillReceiveProps(nextProps) {
@@ -181,6 +192,8 @@ export default class FilterPanel extends Component {
 		this.setState({
 			selectedLight: light
 		})
+		this.props.getLight(light);
+		this.props.controlling("light")
 	}
 	onAlarmZoneSelect(alarm_zone) {
 		console.log("alarm_zone selected:", alarm_zone)
@@ -199,9 +212,21 @@ export default class FilterPanel extends Component {
 		this.setState({
 			selectedSensor: sensor
 		})
+		this.props.getSensor(sensor);
+		this.props.controlling("sensor")
 	}
 	render() {
 		var self = this;
+		var lightClass = "wrapper-dropdown-3";
+		if (this.state.lightActive) {
+			lightClass = "wrapper-dropdown-3 active menu_active"
+		} else {
+			if (this.state.menu_active == 1) {
+				lightClass = "wrapper-dropdown-3 menu_active"
+			} else {
+				lightClass = "wrapper-dropdown-3"
+			}
+		}
 		return (
 			<div className="filter-panel">
 				<div className="site-name">
@@ -211,7 +236,7 @@ export default class FilterPanel extends Component {
 					<div className="filter-label">
 						<span>Lights:</span>
 					</div>
-					<div id="dd5" onClick={this.onLightClick.bind(this)} className={this.state.lightActive ? ("wrapper-dropdown-3 active"):("wrapper-dropdown-3")} tabIndex="1">
+					<div id="dd5" onClick={this.onLightClick.bind(this)} className={lightClass} tabIndex="1">
 						{this.state.selectedLight ? <span>Light {this.state.selectedLight.id}</span> : <span>Not selected</span>}
 						{this.state.lights[0] != null ?
 							<ul className="dropdown">
