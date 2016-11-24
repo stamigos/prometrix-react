@@ -15,7 +15,7 @@ export default class SideMenu extends Component {
 		headers.append("Authorization", "Token " + localStorage.token);
 		console.log("auth:", headers.get("Authorization"))
 		var request = new Request(
-			'http://127.0.0.1:8000/api/v1/sites/', 
+			'http://54.194.155.176/api/v1/sites/', 
 			{
 				method: "GET", 
 			 	headers: headers

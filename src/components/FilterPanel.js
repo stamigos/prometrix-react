@@ -31,7 +31,7 @@ export default class FilterPanel extends Component {
 		var headers = new Headers();
 		headers.append("Authorization", "Token " + localStorage.token);
 		var request = new Request(
-			'http://127.0.0.1:8000/api/v1/sites/'+site.id+'/lights/', 
+			'http://54.194.155.176/api/v1/sites/'+site.id+'/lights/', 
 			{
 				method: "GET", 
 			 	headers: headers
@@ -67,7 +67,7 @@ export default class FilterPanel extends Component {
 		var headers = new Headers();
 		headers.append("Authorization", "Token " + localStorage.token);
 		var request = new Request(
-			'http://127.0.0.1:8000/api/v1/sites/'+site.id+'/alarm_zones/', 
+			'http://54.194.155.176/api/v1/sites/'+site.id+'/alarm_zones/', 
 			{
 				method: "GET", 
 			 	headers: headers
@@ -103,7 +103,7 @@ export default class FilterPanel extends Component {
 		var headers = new Headers();
 		headers.append("Authorization", "Token " + localStorage.token);
 		var request = new Request(
-			'http://127.0.0.1:8000/api/v1/sites/'+site.id+'/cameras/', 
+			'http://54.194.155.176/api/v1/sites/'+site.id+'/cameras/', 
 			{
 				method: "GET", 
 			 	headers: headers
@@ -141,7 +141,7 @@ export default class FilterPanel extends Component {
 		var headers = new Headers();
 		headers.append("Authorization", "Token " + localStorage.token);
 		var request = new Request(
-			'http://127.0.0.1:8000/api/v1/sites/'+site.id+'/sensors/', 
+			'http://54.194.155.176/api/v1/sites/'+site.id+'/sensors/', 
 			{
 				method: "GET", 
 			 	headers: headers

@@ -90,7 +90,7 @@ export default class Content extends Component {
 		var headers = new Headers();
 		headers.append("Authorization", "Token " + localStorage.token);
 		var request = new Request(
-			'http://127.0.0.1:8000/api/v1/sites/'+site.id+'/last-saved-image/',
+			'http://54.194.155.176/api/v1/sites/'+site.id+'/last-saved-image/',
 			{
 				method: "GET", 
 			 	headers: headers

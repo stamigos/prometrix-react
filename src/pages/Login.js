@@ -26,7 +26,7 @@ export default class Login extends Component {
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 		var request = new Request(
-			'http://127.0.0.1:8000/api/v1/rest-auth/login/', 
+			'http://54.194.155.176/api/v1/rest-auth/login/', 
 			{
 				method: "POST", 
 			 	headers: headers,
