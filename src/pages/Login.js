@@ -11,7 +11,7 @@ export default class Login extends Component {
 			username: "",
 			password: "",
 			remember: false,
-			erros: false
+			errors: false
 		}
 	}
 	onChange(e) {
@@ -46,6 +46,11 @@ export default class Login extends Component {
 				  		localStorage.token = obj.key
 			  			window.location.reload()
 			  		}
+			  		else {
+			  			self.setState({
+			  				errors: true
+			  			})
+			  		}
 			  		console.log('then2:', obj)
 			  	});
 	}
@@ -57,7 +62,7 @@ export default class Login extends Component {
 				</div>
 				<div className="login-wrapper">
 					<span>Log In/Sign In</span>
-					<div className="login-block">
+					<div className={this.state.errors ? "login-block errors": "login-block"}>
 						<form onSubmit={this.onSubmit.bind(this)} method="POST">
 							<label htmlFor="username" className="Username">User Name</label>
 							<input id="username" name="username" placeholder="Enter user name" onChange={this.onChange.bind(this)} />

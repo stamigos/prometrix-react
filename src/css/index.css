@@ -121,11 +121,13 @@ header .right-panel {
 .filter-panel .filter-label span {
     color: #fff;
     font-size: 14px;
+    padding-left: 7px;
+    padding-right: 7px;
 }
 .filter-panel .filters {
-	padding: 9px;
+    padding-top: 10px;
     float: left;
-    width: 85%;
+    width: 86%;
 }
 .filter-panel .filters label {
 	color: #fff;
@@ -161,7 +163,13 @@ header .right-panel {
 .last-saved {
     display: block;
     position: relative;
-    padding: 25px 30px;
+    padding: 25px 15px;
+}
+.last-saved span.no-image-text {
+    color: #f2f2f2;
+    top: 50%;
+    left: 41%;
+    position: absolute;
 }
 .last-saved h2 {
     font-size: 16px;
@@ -179,6 +187,7 @@ header .right-panel {
 }
 .left-content-panel {
     display: inline-block;
+    padding-left: 10px;
     float: left;
 }
 .right-content-panel {
@@ -186,10 +195,12 @@ header .right-panel {
 }
 .controlling {
     display: block;
-    position: relative;
+    position: absolute;
     background: #393e52;
-    padding: 21px 15px;
+    padding: 21px 5px;
     height: 341px;
+    min-width: 510px;
+    overflow-y: auto;
 }
 .controlling .left-column,
 .controlling .right-column {
@@ -199,6 +210,70 @@ header .right-panel {
 }
 .controlling h2 {
     font-size: 16px;
+}
+.controlling.white-box {
+    background: #e6e6e6;
+    padding: 0;
+}
+.grid-wrapper {
+    padding: 15px;
+}
+.grid-item {
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    float: left;
+    line-height: 0;
+    height: 150px;
+    width: 150px;
+    background: #000;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.grid-item.chosen .overlay {
+    display: block;
+    background: rgba(0, 0, 0, 0);
+}
+.grid-item img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 150px;
+    max-height: 150px;
+}
+.image-item {
+    padding: 0;
+    display: inline-block;
+    position: relative;
+    float: left;
+    line-height: 0;
+    width: 410px;
+    height: 341px;
+    background: #000;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.image-item img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 410px;
+    max-height: 341px;
+}
+.grid-item .overlay {
+    position: absolute;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+}
+.grid-item .overlay:hover {
+    display: block;
+    background: rgba(0, 0, 0, 0);
 }
 .controlling .left-column ul {
     border-right: 1px solid #999999;
@@ -225,6 +300,7 @@ header .right-panel {
     font-size: 14px;
     font-weight: 400;
     float: right;
+    max-width: 100px;
 }
 .table {
     display: table;
@@ -581,6 +657,10 @@ input:checked + .slider:before {
     outline:none;
   	box-shadow: 0 0 10px #00aeef;
 	border: 1px solid #00aeef;
+}
+.login-block.errors input {
+    box-shadow: 0 0 7px #b91f1f;
+    border: 1px solid #b91f1f;
 }
 .login-block input::selection {
     background: #00aeef;
