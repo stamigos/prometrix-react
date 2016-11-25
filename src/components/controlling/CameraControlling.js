@@ -54,7 +54,7 @@ export default class CameraControlling extends Component {
 		var headers = new Headers();
 		headers.append("Authorization", "Token " + localStorage.token);
 		var request = new Request(
-			'http://127.0.0.1:8000/api/v1/sites/1/cameras/'+camera_id+'/images/', 
+			'http://54.194.155.176/api/v1/sites/1/cameras/'+camera_id+'/images/', 
 			{
 				method: "GET", 
 			 	headers: headers
